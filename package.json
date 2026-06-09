@@ -1,0 +1,35 @@
+{
+  "name": "api-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "migrate": "orion migrate",
+    "migrate:rollback": "orion migrate:rollback",
+    "migrate:reset": "orion migrate:reset",
+    "migrate:status": "orion migrate:status",
+    "make:migration": "orion make:migration"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
+    "@tsconfig/recommended": "^1.0.13",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.9.2",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@wrsouza/orion": "^0.3.3",
+    "bcryptjs": "^3.0.3",
+    "express": "^5.2.1",
+    "pg": "^8.21.0"
+  }
+}
