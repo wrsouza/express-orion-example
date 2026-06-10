@@ -2,13 +2,14 @@ import { HasMany, hidden, map, Model, table, uuid } from '@wrsouza/orion';
 import { Post } from './Post';
 
 @table('users')
-@hidden(['password'])
 export class User extends Model {
   @uuid()
   declare id: string;
 
   declare name: string;
   declare email: string;
+
+  @hidden()
   declare password: string;
 
   @map('created_at')
