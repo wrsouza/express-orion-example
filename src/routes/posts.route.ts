@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
+import { Category } from '../database/models/Category';
 import { Post } from '../database/models/Post';
 import { User } from '../database/models/User';
-import { Category } from '../database/models/Category';
 export const postsRouter = Router();
 
 postsRouter.get('/posts', async (_req: Request, res: Response, next: NextFunction) => {
@@ -100,8 +100,7 @@ postsRouter.put('/posts/:id/categories', async (req: Request, res: Response, nex
       res.status(400).json({ error: 'category_ids must be a non-empty array' });
       return;
     }
-    await post.categories().detach();
-    await post.categories().attach(categoryIds);
+    await post.categories().sync(categoryIds);
     const updated = await Post.with(['user', 'categories']).find(req.params.id);
     res.json(updated);
   } catch (err) {

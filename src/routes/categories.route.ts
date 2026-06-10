@@ -94,8 +94,7 @@ categoriesRouter.put('/categories/:id/posts', async (req: Request, res: Response
       res.status(400).json({ error: 'post_ids must be a non-empty array' });
       return;
     }
-    await category.posts().detach();
-    await category.posts().attach(postIds);
+    await category.posts().sync(postIds);
     const updated = await Category.with('posts').find(req.params.id);
     res.json(updated);
   } catch (err) {
